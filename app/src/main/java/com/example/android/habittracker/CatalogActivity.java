@@ -45,79 +45,90 @@ public class CatalogActivity extends AppCompatActivity {
         displayDatabaseInfo();
     }
 
-    /**
-     * Temporary helper method to display information in the onscreen TextView about the state of
-     * the habits database.
-     */
-    private void displayDatabaseInfo() {
 
-        // Create and/or open a database to read from it
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+    private Cursor read() {
 
-        String [] projection = {
-                HabitEntry._ID,
-                HabitEntry.COLUMN_HABIT_NAME,
-                HabitEntry.COLUMN_HABIT_TYPE,
-                HabitEntry.COLUMN_HABIT_DAY,
-                HabitEntry.COLUMN_HABIT_ENJOY
-        };
 
-        Cursor cursor = db.query(
-                HabitEntry.TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
+            // Create and/or open a database to read from it
+            SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        TextView displayView = (TextView) findViewById(R.id.text_view_habit);
 
-        try {
-            // Create a header in the Text View that looks like this:
-            //
-            // The habits table contains <number of rows in Cursor> habits.
-            // _id - name - type - day - enjoy
-            //
-            // In the while loop below, iterate through the rows of the cursor and display
-            // the information from each column in this order.
-            displayView.setText("The habits table contains " + cursor.getCount() + " habits.\n\n");
-            displayView.append(HabitEntry._ID + " - " +
-                    HabitEntry.COLUMN_HABIT_NAME + " - " +
-                    HabitEntry.COLUMN_HABIT_TYPE + " - " +
-                    HabitEntry.COLUMN_HABIT_DAY + " - " +
-                    HabitEntry.COLUMN_HABIT_ENJOY + "\n");
+            String[] projection = {
+                    HabitEntry._ID,
+                    HabitEntry.COLUMN_HABIT_NAME,
+                    HabitEntry.COLUMN_HABIT_TYPE,
+                    HabitEntry.COLUMN_HABIT_DAY,
+                    HabitEntry.COLUMN_HABIT_ENJOY
+            };
 
-            // Figure out the index of each column
-            int idColumnIndex = cursor.getColumnIndex(HabitEntry._ID);
-            int nameColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_HABIT_NAME);
-            int typeColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_HABIT_TYPE);
-            int dayColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_HABIT_DAY);
-            int enjoyColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_HABIT_ENJOY);
+            // Perform a query on the habits table
+            Cursor cursor = db.query(
+                    HabitEntry.TABLE_NAME,
+                    projection,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null);
 
-            // Iterate through all the returned rows in the cursor
-            while (cursor.moveToNext()) {
-                // Use that index to extract the String or Int value of the word
-                // at the current row the cursor is on.
-                int currentID = cursor.getInt(idColumnIndex);
-                String currentName = cursor.getString(nameColumnIndex);
-                String currentType = cursor.getString(typeColumnIndex);
-                int currentDay = cursor.getInt(dayColumnIndex);
-                int currentEnjoy = cursor.getInt(enjoyColumnIndex);
-                // Display the values from each column of the current row in the cursor in the TextView
-                displayView.append(("\n" + currentID + " - " +
-                        currentName + " - " +
-                        currentType + " - " +
-                        currentDay + " - " +
-                        currentEnjoy));
+
+            TextView displayView = (TextView) findViewById(R.id.text_view_habit);
+
+            try {
+                // Create a header in the Text View that looks like this:
+                //
+                // The habits table contains <number of rows in Cursor> habits.
+                // _id - name - type - day - enjoy
+                //
+                // In the while loop below, iterate through the rows of the cursor and display
+                // the information from each column in this order.
+                displayView.setText("The habits table contains " + cursor.getCount() + " habits.\n\n");
+                displayView.append(HabitEntry._ID + " - " +
+                        HabitEntry.COLUMN_HABIT_NAME + " - " +
+                        HabitEntry.COLUMN_HABIT_TYPE + " - " +
+                        HabitEntry.COLUMN_HABIT_DAY + " - " +
+                        HabitEntry.COLUMN_HABIT_ENJOY + "\n");
+
+                // Figure out the index of each column
+                int idColumnIndex = cursor.getColumnIndex(HabitEntry._ID);
+                int nameColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_HABIT_NAME);
+                int typeColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_HABIT_TYPE);
+                int dayColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_HABIT_DAY);
+                int enjoyColumnIndex = cursor.getColumnIndex(HabitEntry.COLUMN_HABIT_ENJOY);
+
+                // Iterate through all the returned rows in the cursor
+                while (cursor.moveToNext()) {
+                    // Use that index to extract the String or Int value of the word
+                    // at the current row the cursor is on.
+                    int currentID = cursor.getInt(idColumnIndex);
+                    String currentName = cursor.getString(nameColumnIndex);
+                    String currentType = cursor.getString(typeColumnIndex);
+                    int currentDay = cursor.getInt(dayColumnIndex);
+                    int currentEnjoy = cursor.getInt(enjoyColumnIndex);
+                    // Display the values from each column of the current row in the cursor in the TextView
+                    displayView.append(("\n" + currentID + " - " +
+                            currentName + " - " +
+                            currentType + " - " +
+                            currentDay + " - " +
+                            currentEnjoy));
+                }
+            } finally {
+                // Always close the cursor when you're done reading from it. This releases all its
+                // resources and makes it invalid.
+                cursor.close();
             }
-        } finally {
-            // Always close the cursor when you're done reading from it. This releases all its
-            // resources and makes it invalid.
-            cursor.close();
+
+        return cursor;
         }
-    }
+
+
+        /**
+         * Temporary helper method to display information in the onscreen TextView about the state of
+         * the exercises database.
+         */
+        private void displayDatabaseInfo() {
+            Cursor cursor = read();
+        }
 
     private void insertHabit(){
         // Gets the database in write mode
