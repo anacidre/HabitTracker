@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <!-- Name for the application [CHAR LIMIT=12] -->
+    <string name="app_name">Habit Tracker</string>
+
+    <!-- Label for overflow menu option that inserts fake habit data into the app [CHAR LIMIT=20] -->
+    <string name="action_insert_dummy_data">Insert Dummy Data</string>
+
+    <!-- Label for overflow menu option that deletes all habit data in the app [CHAR LIMIT=20] -->
+    <string name="action_delete_all_entries">Delete All Habits</string>
+
+    <!-- Title for the activity to add a new habit [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_new_habit">Add a Habit</string>
+
+    <!-- Label for editor menu option to save habit and leave editor [CHAR LIMIT=20] -->
+    <string name="action_save">Save</string>
+
+    <!-- Label for editor overflow menu option that deletes the current habit [CHAR LIMIT=20] -->
+    <string name="action_delete">Delete</string>
+
+    <!-- Label for overview category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="category_overview">Overview</string>
+
+    <!-- Label for gender information in the editor [CHAR LIMIT=30] -->
+    <string name="category_day">Day</string>
+
+    <!-- Label for measurement information in the editor [CHAR LIMIT=30] -->
+    <string name="category_enjoy">Did you Enjoy?</string>
+
+    <!-- Text hint for name field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_habit_name">Habit</string>
+
+    <!-- Text hint for type field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_habit_type">Type</string>
+
+    <!-- Text hint for day field in the editor [CHAR LIMIT=30] -->
+    <string name="hint_habit_day">Day</string>
+
+    <!-- Text hint for enjoy field in the editor [CHAR LIMIT=30]] -->
+    <string name="hint_habit_enjoy">From 1 to 10</string>
+
+    <!-- Label for dropdown menu option if the day of the week is monday [CHAR LIMIT=20] -->
+    <string name="day_monday">Monday</string>
+
+    <!-- Label for dropdown menu option if the day of the week is monday [CHAR LIMIT=20] -->
+    <string name="day_tuesday">Tuesday</string>
+
+    <!-- Label for dropdown menu option if the day of the week is monday [CHAR LIMIT=20] -->
+    <string name="day_wednesday">Wednesday</string>
+
+    <!-- Label for dropdown menu option if the day of the week is monday [CHAR LIMIT=20] -->
+    <string name="day_thursday">Thursday</string>
+
+    <!-- Label for dropdown menu option if the day of the week is monday [CHAR LIMIT=20] -->
+    <string name="day_friday">Friday</string>
+
+    <!-- Label for dropdown menu option if the day of the week is monday [CHAR LIMIT=20] -->
+    <string name="day_saturday">Saturday</string>
+
+    <!-- Label for dropdown menu option if the day of the week is monday [CHAR LIMIT=20] -->
+    <string name="day_sunday">Sunday</string>
+</resources>
